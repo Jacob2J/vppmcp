@@ -29,24 +29,24 @@ Savings figures, a blended rate for a home, competitor pricing, buyout or exit c
 ## Run it
 
 ```bash
-python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+uv sync
 ```
 
 Local, over stdio:
 
 ```bash
-.venv/bin/fastmcp run server.py:mcp
+uv run fastmcp run server.py:mcp
 ```
 
 Over HTTP (MCP at `/mcp`, plain text at `/llms.txt`):
 
 ```bash
-.venv/bin/fastmcp run server.py:mcp --transport http --port 8000
+uv run fastmcp run server.py:mcp --transport http --port 8000
 ```
 
 To host it, point any FastMCP-compatible host at this repo with the entrypoint `server.py:mcp`.
 
-Optional environment variables: `VPP_WEBSITE` and `VPP_BOOKING_URL`. Both default to `https://vpptexas.com`.
+Needs [uv](https://docs.astral.sh/uv/). Optional environment variables: `VPP_WEBSITE` (default `https://vpptexas.com`) and `VPP_BOOKING_URL` (default `https://vpptexas.com/book-v2`).
 
 ## Replying to comments with it
 
@@ -63,7 +63,7 @@ Optional environment variables: `VPP_WEBSITE` and `VPP_BOOKING_URL`. Both defaul
 Every fact lives in `knowledge.py`, which mirrors the company's internal approved-claims list. When the offer changes, update both in the same pass, bump `CLAIMS_VERIFIED`, and run the tests:
 
 ```bash
-.venv/bin/pip install pytest && .venv/bin/python -m pytest -q
+uv run pytest -q
 ```
 
 The tests are the gate. They fail if a known unapproved claim stops being blocked, or if anything internal leaks into a public response.

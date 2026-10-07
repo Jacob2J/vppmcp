@@ -16,7 +16,7 @@ import re
 CLAIMS_VERIFIED = "2026-09-08"
 
 WEBSITE = os.environ.get("VPP_WEBSITE", "https://vpptexas.com")
-BOOKING_URL = os.environ.get("VPP_BOOKING_URL", WEBSITE)
+BOOKING_URL = os.environ.get("VPP_BOOKING_URL", "https://vpptexas.com/book-v2")
 
 ABOUT = """\
 VPP Texas is a Texas virtual power plant operator. We install a home battery
